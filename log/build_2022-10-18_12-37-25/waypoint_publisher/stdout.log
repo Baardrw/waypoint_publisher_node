@@ -1,0 +1,19 @@
+running egg_info
+writing ../../build/waypoint_publisher/waypoint_publisher.egg-info/PKG-INFO
+writing dependency_links to ../../build/waypoint_publisher/waypoint_publisher.egg-info/dependency_links.txt
+writing entry points to ../../build/waypoint_publisher/waypoint_publisher.egg-info/entry_points.txt
+writing requirements to ../../build/waypoint_publisher/waypoint_publisher.egg-info/requires.txt
+writing top-level names to ../../build/waypoint_publisher/waypoint_publisher.egg-info/top_level.txt
+reading manifest file '../../build/waypoint_publisher/waypoint_publisher.egg-info/SOURCES.txt'
+writing manifest file '../../build/waypoint_publisher/waypoint_publisher.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+running install_egg_info
+removing '/workspaces/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/waypoint_publisher/waypoint_publisher.egg-info to /workspaces/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher-0.0.0-py3.8.egg-info
+running install_scripts
+Installing wp_publisher_node script to /workspaces/WaypointPublisher/install/waypoint_publisher/lib/waypoint_publisher
+writing list of installed files to '/workspaces/WaypointPublisher/build/waypoint_publisher/install.log'

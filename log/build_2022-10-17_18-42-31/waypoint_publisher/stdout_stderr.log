@@ -1,0 +1,26 @@
+/home/bard/.local/lib/python3.8/site-packages/setuptools/dist.py:744: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+  warnings.warn(
+/home/bard/.local/lib/python3.8/site-packages/setuptools/dist.py:744: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+  warnings.warn(
+running egg_info
+writing ../../build/waypoint_publisher/waypoint_publisher.egg-info/PKG-INFO
+writing dependency_links to ../../build/waypoint_publisher/waypoint_publisher.egg-info/dependency_links.txt
+writing requirements to ../../build/waypoint_publisher/waypoint_publisher.egg-info/requires.txt
+writing top-level names to ../../build/waypoint_publisher/waypoint_publisher.egg-info/top_level.txt
+reading manifest file '../../build/waypoint_publisher/waypoint_publisher.egg-info/SOURCES.txt'
+writing manifest file '../../build/waypoint_publisher/waypoint_publisher.egg-info/SOURCES.txt'
+running build
+running build_py
+copying waypoint_publisher/waypoint_publisher_node.py -> /home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/build/lib/waypoint_publisher
+running install
+/home/bard/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+running install_lib
+copying /home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/build/lib/waypoint_publisher/waypoint_publisher_node.py -> /home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher
+byte-compiling /home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher/waypoint_publisher_node.py to waypoint_publisher_node.cpython-38.pyc
+running install_data
+running install_egg_info
+removing '/home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/waypoint_publisher/waypoint_publisher.egg-info to /home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher-0.0.0-py3.8.egg-info
+running install_scripts
+writing list of installed files to '/home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/install.log'

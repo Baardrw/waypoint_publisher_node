@@ -1,0 +1,28 @@
+[1.288s] Invoking command in '/home/bard/Documents/Ascend/WaypointPublisher/src/waypoint_publisher': PYTHONPATH=/home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/waypoint_publisher build --build-base /home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/build install --prefix /home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher --record /home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/install.log --single-version-externally-managed
+[1.461s] /home/bard/.local/lib/python3.8/site-packages/setuptools/dist.py:744: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[1.461s]   warnings.warn(
+[1.461s] /home/bard/.local/lib/python3.8/site-packages/setuptools/dist.py:744: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+[1.461s]   warnings.warn(
+[1.877s] running egg_info
+[1.917s] writing ../../build/waypoint_publisher/waypoint_publisher.egg-info/PKG-INFO
+[1.954s] writing dependency_links to ../../build/waypoint_publisher/waypoint_publisher.egg-info/dependency_links.txt
+[2.140s] writing requirements to ../../build/waypoint_publisher/waypoint_publisher.egg-info/requires.txt
+[2.174s] writing top-level names to ../../build/waypoint_publisher/waypoint_publisher.egg-info/top_level.txt
+[2.226s] reading manifest file '../../build/waypoint_publisher/waypoint_publisher.egg-info/SOURCES.txt'
+[2.227s] writing manifest file '../../build/waypoint_publisher/waypoint_publisher.egg-info/SOURCES.txt'
+[2.227s] running build
+[2.227s] running build_py
+[2.227s] copying waypoint_publisher/waypoint_publisher_node.py -> /home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/build/lib/waypoint_publisher
+[2.227s] running install
+[2.227s] /home/bard/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[2.228s]   warnings.warn(
+[2.232s] running install_lib
+[2.273s] copying /home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/build/lib/waypoint_publisher/waypoint_publisher_node.py -> /home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher
+[2.274s] byte-compiling /home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher/waypoint_publisher_node.py to waypoint_publisher_node.cpython-38.pyc
+[2.274s] running install_data
+[2.282s] running install_egg_info
+[2.325s] removing '/home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher-0.0.0-py3.8.egg-info' (and everything under it)
+[2.326s] Copying ../../build/waypoint_publisher/waypoint_publisher.egg-info to /home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher-0.0.0-py3.8.egg-info
+[2.326s] running install_scripts
+[2.423s] writing list of installed files to '/home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/install.log'
+[2.474s] Invoked command in '/home/bard/Documents/Ascend/WaypointPublisher/src/waypoint_publisher' returned '0': PYTHONPATH=/home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/waypoint_publisher build --build-base /home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/build install --prefix /home/bard/Documents/Ascend/WaypointPublisher/install/waypoint_publisher --record /home/bard/Documents/Ascend/WaypointPublisher/build/waypoint_publisher/install.log --single-version-externally-managed
