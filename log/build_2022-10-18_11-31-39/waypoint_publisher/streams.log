@@ -1,0 +1,24 @@
+[0.724s] Invoking command in '/workspaces/WaypointPublisher/src/waypoint_publisher': PYTHONPATH=/workspaces/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/waypoint_publisher build --build-base /workspaces/WaypointPublisher/build/waypoint_publisher/build install --prefix /workspaces/WaypointPublisher/install/waypoint_publisher --record /workspaces/WaypointPublisher/build/waypoint_publisher/install.log --single-version-externally-managed
+[0.932s] running egg_info
+[0.933s] writing ../../build/waypoint_publisher/waypoint_publisher.egg-info/PKG-INFO
+[0.933s] writing dependency_links to ../../build/waypoint_publisher/waypoint_publisher.egg-info/dependency_links.txt
+[0.934s] writing entry points to ../../build/waypoint_publisher/waypoint_publisher.egg-info/entry_points.txt
+[0.934s] writing requirements to ../../build/waypoint_publisher/waypoint_publisher.egg-info/requires.txt
+[0.934s] writing top-level names to ../../build/waypoint_publisher/waypoint_publisher.egg-info/top_level.txt
+[0.977s] reading manifest file '../../build/waypoint_publisher/waypoint_publisher.egg-info/SOURCES.txt'
+[0.978s] writing manifest file '../../build/waypoint_publisher/waypoint_publisher.egg-info/SOURCES.txt'
+[0.978s] running build
+[0.979s] running build_py
+[0.979s] copying waypoint_publisher/waypoint_publisher_node.py -> /workspaces/WaypointPublisher/build/waypoint_publisher/build/lib/waypoint_publisher
+[0.979s] running install
+[0.981s] running install_lib
+[0.982s] copying /workspaces/WaypointPublisher/build/waypoint_publisher/build/lib/waypoint_publisher/waypoint_publisher_node.py -> /workspaces/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher
+[0.984s] byte-compiling /workspaces/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher/waypoint_publisher_node.py to waypoint_publisher_node.cpython-38.pyc
+[0.986s] running install_data
+[0.987s] running install_egg_info
+[0.988s] removing '/workspaces/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher-0.0.0-py3.8.egg-info' (and everything under it)
+[0.989s] Copying ../../build/waypoint_publisher/waypoint_publisher.egg-info to /workspaces/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages/waypoint_publisher-0.0.0-py3.8.egg-info
+[0.990s] running install_scripts
+[1.012s] Installing wp_publisher_node script to /workspaces/WaypointPublisher/install/waypoint_publisher/lib/waypoint_publisher
+[1.013s] writing list of installed files to '/workspaces/WaypointPublisher/build/waypoint_publisher/install.log'
+[1.082s] Invoked command in '/workspaces/WaypointPublisher/src/waypoint_publisher' returned '0': PYTHONPATH=/workspaces/WaypointPublisher/install/waypoint_publisher/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/waypoint_publisher build --build-base /workspaces/WaypointPublisher/build/waypoint_publisher/build install --prefix /workspaces/WaypointPublisher/install/waypoint_publisher --record /workspaces/WaypointPublisher/build/waypoint_publisher/install.log --single-version-externally-managed

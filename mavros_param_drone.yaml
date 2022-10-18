@@ -1,0 +1,41 @@
+# mavros_param.yaml
+mavros:
+  ros__parameters: {
+    # This only starts the plugins that we are interested in
+    #plugin_denylist: [],
+  }
+
+/mavros/global_position:
+  ros__parameters: {
+    tf.send: true
+  }
+
+
+/mavros/local_position:
+  ros__parameters: {
+    frame_id: "local_enu",
+    tf.send: true,
+    tf.frame_id: "local_enu",
+    tf.child_frame_id: "drone_flu",
+    tf.send_fcu: false,
+  }
+
+/mavros/sys_time:
+  ros__parameters: {
+    time_ref_source: "fcu",  # time_reference source
+    timesync_mode: "MAVLINK",
+    timesync_avg_alpha: 0.6, # timesync averaging factor
+    system_time_rate: 1.0,
+    timesync_rate: 10.0,
+  }
+
+mavros_router:
+  ros__parameters: {}
+
+mavros_node:
+  ros__parameters: {
+    fcu_url: "/dev/uav_fc:921600",
+    config_yaml: /workspaces/ai_ardupilot_interface/apm_config.yaml"
+  }
+    
+

@@ -1,0 +1,39 @@
+# mavros_param.yaml
+mavros:
+  ros__parameters: {
+    # This only starts the plugins that we are interested in
+    # plugin_denylist: [],
+  }
+
+/mavros/global_position:
+  ros__parameters: {
+    frame_id: "earth",
+    tf.send: false,
+    tf.frame_id: "earth",
+    tf.child_frame_id: "local_enu",
+    tf.send_fcu: false,
+  }
+
+
+/mavros/local_position:
+  ros__parameters: {
+    frame_id: "local_enu",
+    tf.send: true,
+    tf.frame_id: "local_enu",
+    tf.child_frame_id: "body_flu",
+    tf.send_fcu: false,
+  }
+
+/mavros/sys_time:
+  ros__parameters: {
+    time_ref_source: "fcu",  # time_reference source
+    timesync_mode: "MAVLINK",
+    timesync_avg_alpha: 0.6, # timesync averaging factor
+    system_time_rate: 1.0,
+    timesync_rate: 10.0,
+  }
+
+mavros_node:
+  ros__parameters: {
+    fcu_url: "udp://:14540@127.0.0.1:14557"
+  }
