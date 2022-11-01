@@ -1,9 +1,10 @@
-from operator import le
 import rclpy
 from rclpy.node import Node     
 from mavros_msgs.msg import Waypoint
 from mavros_msgs.srv import WaypointPush
 from mavros_msgs.srv import CommandBool
+
+import waypoint_publisher.modify_waypoints as modify_waypoints
 
 class WaypointPublisherNode(Node):
     def __init__(self):
@@ -15,8 +16,8 @@ class WaypointPublisherNode(Node):
         self.arm_client = self.create_client(CommandBool, '/mavros/cmd/arming')
         # 63.3199076
         # 10.2710034
-        self.declare_parameter('takeoff_land_lat', 47.3977508)
-        self.declare_parameter('takeoff_land_long', 8.5456073)
+        self.declare_parameter('takeoff_land_lat', 38.316)
+        self.declare_parameter('takeoff_land_long', -76.549)
         self.declare_parameter('above_land_height', 1.0)
         self.declare_parameter('travel_height', 10.)
 
@@ -65,20 +66,41 @@ class WaypointPublisherNode(Node):
 
 
         #Loading Waypoints from file
-        self.ingress_waypoint_tuples = self.load_from_file("src/waypoint_publisher/waypoint_publisher/waypoints/wp.txt")
-        self.ingress_waypoints = []
+        ingress_waypoint_tuples = self.load_from_file("src/waypoint_publisher/waypoint_publisher/waypoints/wp.txt")
+        
+        # Convert the border points to east north up
+        border_points_enu = [modify_waypoints.convert_gps_to_local_enu(point) for point in self.geoFencePoints]
 
+        # Convert the waypoints to east north up coordinates (But also add the start waypoint)
+        waypoints_enu = [modify_waypoints.convert_gps_to_local_enu(point) for point in [(self.takeoff_land_lat, self.takeoff_land_long)] + ingress_waypoint_tuples]
+
+        # Calculate a new path that stays within the border, with a tolerance of 15 meters
+        conforming_path = modify_waypoints.path_within_border(border_points_enu, waypoints_enu, 15)
+
+        if conforming_path is None:
+            self.get_logger().error("Some waypoints are outside the GeoFence! Continuing without modifying waypoints")
+            modified_ingress_waypoint_tuples = ingress_waypoint_tuples
+        else:
+            # modify_waypoints.display(border_points_enu, waypoints_enu, conforming_path)
+            # Remove the start waypoint
+            conforming_path = conforming_path[1:]
+
+            # Convert from east north up back to gps
+            modified_ingress_waypoint_tuples = [modify_waypoints.convert_local_enu_to_gps(point) for point in conforming_path]
+
+
+        self.ingress_waypoints = []
         #Creating mavros waypoint msgs
-        for i in range(len(self.ingress_waypoint_tuples)):
+        for i in range(len(modified_ingress_waypoint_tuples)):
             wp = Waypoint()
             wp.frame = self.frame
             wp.command = 16
             wp.autocontinue = True
-            wp.x_lat = self.ingress_waypoint_tuples[i][0]
-            wp.y_long = self.ingress_waypoint_tuples[i][1]
+            wp.x_lat = modified_ingress_waypoint_tuples[i][0]
+            wp.y_long = modified_ingress_waypoint_tuples[i][1]
             wp.z_alt = self.travel_height
             self.ingress_waypoints.append(wp)
-            self._logger.info(f'{self.ingress_waypoint_tuples[i][0]},{self.ingress_waypoint_tuples[i][1]}')
+            self._logger.info(f'{modified_ingress_waypoint_tuples[i][0]},{modified_ingress_waypoint_tuples[i][1]}')
         
 
         #Push waypoints 
@@ -120,10 +142,12 @@ class WaypointPublisherNode(Node):
 
         self.get_logger().info(f'3')
 
-        self.get_logger().info(f'waypoint push resp: {future.result().success}')
+        response = future.result()
 
-        return future
-            
+        self.get_logger().info(f'waypoint push resp: {response.success}')
+
+        return response
+        
             
 def main(args = None):
     rclpy.init(args=args)
