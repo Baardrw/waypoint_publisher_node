@@ -28,10 +28,14 @@ class WaypointPublisherNode(Node):
 
         self.frame = Waypoint.FRAME_GLOBAL_REL_ALT
 
-        self.initialization_state()
+        self.load_geofence()
+        self.load_waypoints()
         
+    
+    def load_geofence(self):
+        self.geoFencePoints = self.load_from_file("src/waypoint_publisher/waypoint_publisher/waypoints/gf.txt")
  
-    def initialization_state(self):
+    def load_waypoints(self):
         self.get_logger().info('initzialising waypoints')
 
         self.initial_waypoints = []
@@ -47,7 +51,7 @@ class WaypointPublisherNode(Node):
 
         self.get_logger().info('home waypoint initzialised')
 
-        # takeoff wp
+        # takeoff waypoint
         takeoff_wp = Waypoint()
         takeoff_wp.frame = self.frame
         takeoff_wp.command = 22
@@ -60,10 +64,11 @@ class WaypointPublisherNode(Node):
         self.get_logger().info('takeoff waypoint initzialised')
 
 
-        #tentativley loading waypoints from file
-        self.ingress_waypoint_tuples = self.load_waypoints_from_file()
+        #Loading Waypoints from file
+        self.ingress_waypoint_tuples = self.load_from_file("src/waypoint_publisher/waypoint_publisher/waypoints/wp.txt")
         self.ingress_waypoints = []
 
+        #Creating mavros waypoint msgs
         for i in range(len(self.ingress_waypoint_tuples)):
             wp = Waypoint()
             wp.frame = self.frame
@@ -76,13 +81,16 @@ class WaypointPublisherNode(Node):
             self._logger.info(f'{self.ingress_waypoint_tuples[i][0]},{self.ingress_waypoint_tuples[i][1]}')
         
 
+        #Push waypoints 
         self.waypoints = self.initial_waypoints + self.ingress_waypoints
         self.get_logger().info(f'{len(self.waypoints)}')
         self.push_waypoints(self.waypoints,0)
 
+
+
         
-    def load_waypoints_from_file(self) -> list:
-        with open("src/waypoint_publisher/waypoint_publisher/waypoints/suas.txt", "r") as waypoints_file:
+    def load_from_file(self, filePath) -> list:
+        with open(filePath, "r") as waypoints_file:
             self.wp_data = waypoints_file.read().splitlines()
             
         waypoint_tuples = []
@@ -94,14 +102,13 @@ class WaypointPublisherNode(Node):
 
         return waypoint_tuples
 
-    def push_waypoints(self, waypoints, start_index=0) -> WaypointPush.Response:
+    def push_waypoints(self, waypoints: list, start_index=0) -> WaypointPush.Response:
+        #checking what type the data is        
         self.get_logger().info(f'pushing {len(waypoints)} waypoints')
         req = WaypointPush.Request()
         req.start_index = start_index
         req.waypoints = waypoints
         self.get_logger().info(f'1')
-
-
 
         while not self.mission_push_client.wait_for_service(timeout_sec=1):
             self.get_logger().info(f'wait for mission push service timed out')
@@ -113,9 +120,10 @@ class WaypointPublisherNode(Node):
 
         self.get_logger().info(f'3')
 
-        self.get_logger().info(f'waypoint push resp: {future}')
+        self.get_logger().info(f'waypoint push resp: {future.result().success}')
 
-        return future            
+        return future
+            
             
 def main(args = None):
     rclpy.init(args=args)

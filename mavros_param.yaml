@@ -5,14 +5,14 @@ mavros:
     #plugin_denylist: [],
   }
 
-/mavros/global_position:
-  ros__parameters: {
-    frame_id: "earth",
-    tf.send: false,
-    tf.frame_id: "earth",
-    tf.child_frame_id: "local_enu",
-    tf.send_fcu: false,
-  }
+# /mavros/global_position:
+#   ros__parameters: {
+#     frame_id: "earth",
+#     tf.send: false,
+#     tf.frame_id: "earth",
+#     tf.child_frame_id: "local_enu",
+#     tf.send_fcu: false,
+#   }
 
 
 /mavros/local_position:
@@ -38,9 +38,5 @@ mavros_router:
 
 mavros_node:
   ros__parameters: {
-    fcu_url: "udp://0.0.0.0:14551@",
-    config_yaml: /workspaces/ai_ardupilot_interface/apm_config.yaml"
+    fcu_url: "udp://:14540@127.0.0.1:14557"
   }
-
-
-
