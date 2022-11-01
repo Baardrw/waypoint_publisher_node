@@ -13,9 +13,7 @@ class WaypointPublisherNode(Node):
         self.get_logger().info('creating waypoint_publisher_node')
 
         self.mission_push_client = self.create_client(WaypointPush, '/mavros/mission/push')
-        self.arm_client = self.create_client(CommandBool, '/mavros/cmd/arming')
-        # 63.3199076
-        # 10.2710034
+        
         self.declare_parameter('takeoff_land_lat', 38.316)
         self.declare_parameter('takeoff_land_long', -76.549)
         self.declare_parameter('above_land_height', 1.0)
@@ -31,10 +29,11 @@ class WaypointPublisherNode(Node):
 
         self.load_geofence()
         self.load_waypoints()
-        
-    
+
+
     def load_geofence(self):
         self.geoFencePoints = self.load_from_file("src/waypoint_publisher/waypoint_publisher/waypoints/gf.txt")
+        
  
     def load_waypoints(self):
         self.get_logger().info('initzialising waypoints')
@@ -100,12 +99,10 @@ class WaypointPublisherNode(Node):
             wp.y_long = modified_ingress_waypoint_tuples[i][1]
             wp.z_alt = self.travel_height
             self.ingress_waypoints.append(wp)
-            self._logger.info(f'{modified_ingress_waypoint_tuples[i][0]},{modified_ingress_waypoint_tuples[i][1]}')
         
 
         #Push waypoints 
         self.waypoints = self.initial_waypoints + self.ingress_waypoints
-        self.get_logger().info(f'{len(self.waypoints)}')
         self.push_waypoints(self.waypoints,0)
 
 
@@ -117,7 +114,6 @@ class WaypointPublisherNode(Node):
             
         waypoint_tuples = []
         for data in self.wp_data:
-            self._logger.info(f'{data}')
             data = data.split(",")
 
             waypoint_tuples.append((float(data[0].strip()), float(data[1].strip())))
@@ -130,17 +126,12 @@ class WaypointPublisherNode(Node):
         req = WaypointPush.Request()
         req.start_index = start_index
         req.waypoints = waypoints
-        self.get_logger().info(f'1')
 
         while not self.mission_push_client.wait_for_service(timeout_sec=1):
             self.get_logger().info(f'wait for mission push service timed out')
-
-        self.get_logger().info(f'2')
         
         future = self.mission_push_client.call_async(req)
         rclpy.spin_until_future_complete(self,future)
-
-        self.get_logger().info(f'3')
 
         response = future.result()
 
